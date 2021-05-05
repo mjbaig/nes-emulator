@@ -1,0 +1,34 @@
+{
+  "name": "nes-emulator",
+  "version": "1.0.0",
+  "description": "a webcomponent that's also an emulator",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "rollup -c --environment INCLUDE_DEPS,BUILD:production",
+    "test": "mocha ./test/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjbaig/nes-emulator.git"
+  },
+  "keywords": [
+    "webcomponent",
+    "emulator",
+    "nes"
+  ],
+  "author": "Maz Baig",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mjbaig/nes-emulator/issues"
+  },
+  "homepage": "https://github.com/mjbaig/nes-emulator#readme",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2",
+    "rollup": "^2.47.0",
+    "rollup-plugin-serve": "^1.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "sinon": "^10.0.0"
+  }
+}
