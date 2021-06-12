@@ -1,34 +1,31 @@
 {
   "name": "nes-emulator",
   "version": "1.0.0",
-  "description": "a webcomponent that's also an emulator",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "rollup -c -w",
-    "build": "rollup -c --environment INCLUDE_DEPS,BUILD:production",
-    "test": "mocha ./test/*.test.js"
+    "test": "node tests",
+    "asbuild:untouched": "asc assembly/index.ts --target debug",
+    "asbuild:optimized": "asc assembly/index.ts --target release",
+    "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mjbaig/nes-emulator.git"
   },
-  "keywords": [
-    "webcomponent",
-    "emulator",
-    "nes"
-  ],
-  "author": "Maz Baig",
-  "license": "MIT",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/mjbaig/nes-emulator/issues"
   },
   "homepage": "https://github.com/mjbaig/nes-emulator#readme",
+  "dependencies": {
+    "@assemblyscript/loader": "^0.19.2"
+  },
   "devDependencies": {
-    "chai": "^4.3.4",
-    "mocha": "^8.3.2",
-    "rollup": "^2.47.0",
-    "rollup-plugin-serve": "^1.1.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "sinon": "^10.0.0"
+    "assemblyscript": "^0.19.2",
+    "rollup": "^2.51.2",
+    "rollup-plugin-copy": "^3.4.0"
   }
 }
