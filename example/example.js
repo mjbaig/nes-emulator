@@ -21,6 +21,11 @@ class NESWindow extends HTMLElement {
         super();
         this.value = "";
         this.nes = null;
+        this.canvas = document.createElement("canvas");
+        this.canvas.id = "nes-window";
+        this.canvas.width = "256";
+        this.canvas.height = "240";
+        this.canvas.style = "border:1px solid #000000;";
     }
 
     static get observedAttributes() {
@@ -30,7 +35,8 @@ class NESWindow extends HTMLElement {
     attributeChangedCallback(name, oldValue, newValue) {
         console.log("change detected");
         if (name === 'test') {
-            this.innerHTML = `<span id="nes-window">${newValue}</span>`;
+            // this.innerHTML = `<span id="nes-window">${newValue}</span>`;
+            this.canvas.width +=5;
         }
     }
 
@@ -39,7 +45,7 @@ class NESWindow extends HTMLElement {
         console.log("connected");
         this.nes = new NES(this);
         this.nes.run();
-        this.innerHTML = `<canvas id="nes-window" width="256" height="240" style="border:1px solid #000000;"></canvas>`;
+        this.appendChild(this.canvas);
     }
 
 }
