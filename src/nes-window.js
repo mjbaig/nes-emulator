@@ -20,7 +20,6 @@ class NESWindow extends HTMLElement {
     attributeChangedCallback(name, oldValue, newValue) {
         console.log("change detected");
         if (name === 'test') {
-            // this.innerHTML = `<span id="nes-window">${newValue}</span>`;
             this.canvas.width +=5;
         }
     }
