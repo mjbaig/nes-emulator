@@ -15,6 +15,6 @@ export default class NES {
         setInterval(() => {
             console.log("setting attribute")
             this.nesWindow.setAttribute("test", new Date().getUTCMilliseconds());
-        }, 1000);
+        }, 10);
     }
 }
