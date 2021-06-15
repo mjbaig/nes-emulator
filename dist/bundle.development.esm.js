@@ -1,20 +1,3 @@
-class NES {
-
-    /**
-     * @param {NESWindow} nesWindow
-     */
-    constructor(nesWindow) {
-        this.nesWindow = nesWindow;
-    }
-
-    run() {
-        setInterval(() => {
-            console.log("setting attribute");
-            this.nesWindow.setAttribute("test", new Date().getUTCMilliseconds());
-        }, 10);
-    }
-}
-
 class NESWindow extends HTMLElement {
 
     width = 256;
@@ -27,11 +10,6 @@ class NESWindow extends HTMLElement {
         super();
 
         this.value = "";
-
-        /**
-         * @type {NES}
-         */
-        this.nes = null;
 
         /**
          * @type {HTMLCanvasElement}
@@ -51,6 +29,12 @@ class NESWindow extends HTMLElement {
          * @type {ImageData}
          */
         this.imageData = this.context.createImageData(this.width, this.height);
+
+
+        window.addEventListener("cpu-tick", (e) => {
+            this.drawFrame(this.offset);
+            this.offset += 1;
+        });
     }
 
     static get observedAttributes() {
@@ -93,14 +77,38 @@ class NESWindow extends HTMLElement {
 
     connectedCallback() {
         console.log("connected");
-        this.nes = new NES(this);
-        this.nes.run();
         this.appendChild(this.canvas);
     }
 
 }
 
 customElements.define('nes-window', NESWindow);
+
+class NES {
+
+    /**
+     * @param {NESWindow} nesWindow
+     */
+    constructor(nesWindow) {
+        this.nesWindow = nesWindow;
+        this.tickEvent = new CustomEvent("cpu-tick", {detail: {
+            hi: 1
+        }});
+
+    }
+
+    run() {
+        setInterval(() => {
+            this.tickEvent.detail.hi = this.tickEvent.detail.hi + 1;
+            window.dispatchEvent(this.tickEvent);
+
+        }, 10);
+    }
+}
+
+const nes = new NES();
+
+nes.run();
 
 const NESEmulator = {
     NESWindow

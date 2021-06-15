@@ -9,12 +9,17 @@ export default class NES {
      */
     constructor(nesWindow) {
         this.nesWindow = nesWindow;
+        this.tickEvent = new CustomEvent("cpu-tick", {detail: {
+            hi: 1
+        }});
+
     }
 
     run() {
         setInterval(() => {
-            console.log("setting attribute")
-            this.nesWindow.setAttribute("test", new Date().getUTCMilliseconds());
+            this.tickEvent.detail.hi = this.tickEvent.detail.hi + 1;
+            window.dispatchEvent(this.tickEvent);
+
         }, 10);
     }
 }
