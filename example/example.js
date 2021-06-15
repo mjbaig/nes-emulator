@@ -92,23 +92,65 @@ class NES {
     constructor(nesWindow) {
         this.nesWindow = nesWindow;
         this.tickEvent = new CustomEvent("cpu-tick", {detail: {
-            hi: 1
+            image_details: [{}]
         }});
 
     }
 
     run() {
         setInterval(() => {
-            this.tickEvent.detail.hi = this.tickEvent.detail.hi + 1;
+            this.tickEvent.detail.image_details = [{}];
             window.dispatchEvent(this.tickEvent);
 
-        }, 10);
+        }, 5);
     }
 }
 
-const nes = new NES();
+class RAM {
 
-nes.run();
+    construtor () {
+
+    }
+
+    run() {
+
+    }
+
+}
+
+class APU {
+    constructor() {
+
+    }
+
+    run() {}
+}
+
+class PPU {
+    constructor() {
+
+    }
+
+    run() {
+        
+    }
+}
+
+class CPU {
+
+    constructor() {
+
+    }
+
+    run() {}
+
+}
+
+new NES().run();
+new RAM().run();
+new APU().run();
+new PPU().run();
+new CPU().run();
 
 const NESEmulator = {
     NESWindow

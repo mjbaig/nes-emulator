@@ -10,16 +10,16 @@ export default class NES {
     constructor(nesWindow) {
         this.nesWindow = nesWindow;
         this.tickEvent = new CustomEvent("cpu-tick", {detail: {
-            hi: 1
+            image_details: [{}]
         }});
 
     }
 
     run() {
         setInterval(() => {
-            this.tickEvent.detail.hi = this.tickEvent.detail.hi + 1;
+            this.tickEvent.detail.image_details = [{}];
             window.dispatchEvent(this.tickEvent);
 
-        }, 10);
+        }, 5);
     }
 }
