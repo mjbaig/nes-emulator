@@ -1,5 +1,6 @@
 import {terser} from 'rollup-plugin-terser';
 import serve from 'rollup-plugin-serve'
+import nodeResolve from 'rollup-plugin-node-resolve'
 
 export default {
     input: 'src/index.js',
@@ -17,6 +18,10 @@ export default {
         plugins: [terser()]
     }],
     plugins: [
+        nodeResolve({
+            ignoreGlobal: false,
+            include: ['node_modules/**']
+          }),
         serve('example')
     ]
 }

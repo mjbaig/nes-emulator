@@ -9,10 +9,10 @@ import Uragirimono from 'uragirimono';
 const uragirimono = new Uragirimono();
 
 new NES().run();
-new RAM().run();
-new APU().run();
-new PPU().run();
-new CPU().run();
+new RAM(uragirimono).run();
+new APU(uragirimono).run();
+new PPU(uragirimono).run();
+new CPU(uragirimono).run();
 
 export const NESEmulator = {
     NESWindow

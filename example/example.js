@@ -106,10 +106,51 @@ class NES {
     }
 }
 
+class Uragirimono {
+    constructor() {
+        this.channels = new Map();
+    }
+    registerChannel(channelName) {
+        if (!this.channels.get(channelName)) {
+            this.channels.set(channelName, {
+                name: channelName,
+                subscriberCallbacks: []
+            });
+        }
+    }
+    destroyChannel(channelName) {
+        const channel = this.channels.get(channelName);
+        if (channel !== undefined) {
+            this.channels.delete(channelName);
+        }
+    }
+    send(message) {
+        const channelName = message.channelName;
+        if (!!channelName) {
+            const channel = this.channels.get(channelName);
+            if (channel !== undefined) {
+                const subscriberCallbacks = channel.subscriberCallbacks;
+                subscriberCallbacks.map((subscriberCallback) => {
+                    subscriberCallback(message);
+                });
+            }
+        }
+    }
+    registerSubscriber(channelName, subscriberCallback) {
+        const channel = this.channels.get(channelName);
+        if (channel !== undefined) {
+            channel.subscriberCallbacks.push(subscriberCallback);
+        }
+    }
+}
+
 class RAM {
 
-    construtor () {
-
+    /**
+     * 
+     * @param {Uragirimono} uragirmono 
+     */
+     constructor(uragirmono) {
     }
 
     run() {
@@ -119,16 +160,25 @@ class RAM {
 }
 
 class APU {
-    constructor() {
 
+    /**
+     * 
+     * @param {Uragirimono} uragirmono 
+     */
+    constructor(uragirmono) {
     }
 
     run() {}
 }
 
 class PPU {
-    constructor() {
 
+    
+    /**
+     * 
+     * @param {Uragirimono} uragirmono 
+     */
+     constructor(uragirmono) {
     }
 
     run() {
@@ -138,19 +188,24 @@ class PPU {
 
 class CPU {
 
-    constructor() {
-
+    /**
+     * 
+     * @param {Uragirimono} uragirmono 
+     */
+     constructor(uragirmono) {
     }
 
     run() {}
 
 }
 
+const uragirimono = new Uragirimono();
+
 new NES().run();
-new RAM().run();
-new APU().run();
-new PPU().run();
-new CPU().run();
+new RAM(uragirimono).run();
+new APU(uragirimono).run();
+new PPU(uragirimono).run();
+new CPU(uragirimono).run();
 
 const NESEmulator = {
     NESWindow
