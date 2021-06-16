@@ -1,6 +1,12 @@
-export default class APU {
-    constructor() {
+import Uragirimono from "uragirimono";
 
+export default class APU {
+
+    /**
+     * 
+     * @param {Uragirimono} uragirmono 
+     */
+    constructor(uragirmono) {
     }
 
     run() {}

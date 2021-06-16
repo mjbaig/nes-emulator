@@ -1,7 +1,12 @@
+import Uragirimono from "uragirimono";
+
 export default class CPU {
 
-    constructor() {
-
+    /**
+     * 
+     * @param {Uragirimono} uragirmono 
+     */
+     constructor(uragirmono) {
     }
 
     run() {}

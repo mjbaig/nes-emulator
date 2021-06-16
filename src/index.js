@@ -4,6 +4,9 @@ import RAM from './emulator/RAM';
 import APU from './emulator/APU';
 import PPU from './emulator/PPU';
 import CPU from './emulator/CPU';
+import Uragirimono from 'uragirimono';
+
+const uragirimono = new Uragirimono();
 
 new NES().run();
 new RAM().run();
